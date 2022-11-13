@@ -11,7 +11,7 @@ route::route() {
     equipment = "";
 }
 
-rout::route(string airline,
+route::route(string airline,
     int airline_id,
     string source_airport,
     int source_airport_id,
@@ -29,7 +29,7 @@ rout::route(string airline,
         equipment_ = equipment;
     }
 
-void rout::set_airline(string airline) {
+void route::set_airline(string airline) {
     airline_ = airline;
 }
 
