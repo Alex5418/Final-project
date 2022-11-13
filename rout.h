@@ -1,10 +1,10 @@
 #pragma once
 #include <string>
 using namespace std;
-class rout {
+class route {
     public:
-        rout();
-        rout(string airline,
+        route();
+        route(string airline,
         int airline_id,
         string source_airport,
         int source_airport_id,
