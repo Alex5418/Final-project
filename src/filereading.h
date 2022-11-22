@@ -22,6 +22,7 @@ class filereading {
         void print_route();
 
         vector<airport> getAirportVector();
+        vector<route> getRouteVector();
 
 
     private:
