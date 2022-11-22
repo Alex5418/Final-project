@@ -20,6 +20,10 @@ class filereading {
         // output content inside container
         void print_airport();
         void print_route();
+
+        vector<airport> getAirportVector();
+
+
     private:
        vector<airport> airports_vector;
        vector<route> routes_vector;
