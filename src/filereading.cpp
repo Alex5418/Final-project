@@ -54,8 +54,8 @@ void filereading::readairport(string file_airport) {
     }
 }
         
-void filereading::readairrout(string file_rout) {
-    ifstream ifs{file_rout};
+void filereading::readairroute(string file_route) {
+    ifstream ifs{file_route};
     for(string line; getline(ifs, line); line = ""){
         vector<string> route_temp = filereading::GetSubstrs(line, ',');
         route temp_route;
