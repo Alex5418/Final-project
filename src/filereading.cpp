@@ -107,3 +107,10 @@ void filereading::print_route() {
         cout << routes_vector[i].route::get_airline()<< endl;
     }
 }
+
+double Readfile::distance(double lat1, double long1, double lat2, double long2) {
+    double d_lat = abs(lat1-lat2);
+    double d_long = abs(long1-long2);
+    double distance = sqr((pow(d_lat), 2)+ (pow(d_long), 2));
+    return distance;
+}
