@@ -16,7 +16,7 @@ class filereading {
         string remove_quote(string substr);
         bool check_num(string var);
 
-
+        double distance(double lat1, double long1, double lat2, double long2)
         // output content inside container
         void print_airport();
         void print_route();
