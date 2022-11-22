@@ -14,8 +14,8 @@ int main () {
 
     filereading fr;
 
-    fr.readairport("/workspaces/cs225/Final-project/data/airports.txt");
-    fr.readairrout("/workspaces/cs225/Final-project/data/Routes.txt");
+    fr.readairport("/workspaces/CS225/Final-project/data/airports.txt");
+    fr.readairroute("/workspaces/CS225/Final-project/data/Routes.txt");
     // fr.print_route();
     fr.print_airport();
 }
