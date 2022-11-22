@@ -1,4 +1,4 @@
-#pragam once
+#pragama once
 
 #include <string>
 #include <vector>
