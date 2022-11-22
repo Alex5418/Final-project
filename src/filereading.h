@@ -11,7 +11,7 @@ using namespace std;
 class filereading {
     public:
         void readairport(string file_airport);
-        void readairrout(string file_rout);
+        void readairroute(string file_route);
         vector<string> GetSubstrs(const string& str, char delimiter);
         string remove_quote(string substr);
         bool check_num(string var);
