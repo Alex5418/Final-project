@@ -113,6 +113,10 @@ vector<airport> filereading::getAirportVector() {
     return airports_vector;
 }
 
+vector<route> filereading::getRouteVector() {
+    return routes_vector;
+}
+
 double filereading::distance(double lat1, double long1, double lat2, double long2) {
     double d_lat = abs(lat1-lat2);
     double d_long = abs(long1-long2);

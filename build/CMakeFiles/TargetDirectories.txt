@@ -1,3 +1,4 @@
+/workspaces/CS225/Final-project/build/CMakeFiles/test.dir
 /workspaces/CS225/Final-project/build/CMakeFiles/main.dir
 /workspaces/CS225/Final-project/build/CMakeFiles/edit_cache.dir
 /workspaces/CS225/Final-project/build/CMakeFiles/rebuild_cache.dir

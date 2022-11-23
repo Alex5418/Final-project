@@ -1,0 +1,5 @@
+add_test( [==[test for test case]==] /workspaces/CS225/Final-project/build/test [==[test for test case]==]  )
+set_tests_properties( [==[test for test case]==] PROPERTIES WORKING_DIRECTORY /workspaces/CS225/Final-project/build)
+add_test( [==[test graph of airports]==] /workspaces/CS225/Final-project/build/test [==[test graph of airports]==]  )
+set_tests_properties( [==[test graph of airports]==] PROPERTIES WORKING_DIRECTORY /workspaces/CS225/Final-project/build)
+set( test_TESTS [==[test for test case]==] [==[test graph of airports]==])

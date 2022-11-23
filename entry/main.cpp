@@ -8,6 +8,7 @@
 #include "Airport.h"
 #include "route.h"
 #include "filereading.h"
+#include "Utils.h"
 
 int main () {
     
@@ -28,7 +29,31 @@ int main () {
 
     double tmp = fr.distance(lat1, long1, lat2, long2);
 
-    fr.print_airport();
+    //fr.print_airport();
 
-    std::cout << tmp << std::endl;
+    //std::cout << tmp << std::endl;
+
+    //test graph
+    //populate graph with airport id
+    vector<vector<int> > g;
+    for (size_t i = 0; i < fr.getAirportVector().size(); i++) {
+        vector<int> temp;
+        temp.push_back(fr.getAirportVector()[i].get_airport_id());
+        g.push_back(temp);
+    }
+
+
+
+    //test graph
+    for (size_t i = 0; i < g.size(); i++) {
+        for (size_t j = 0; j < g[i].size(); j++) {
+            std::cout << g[i][j] << " ";
+        }
+        std::cout << std::endl;
+    }
+
+
+
+
+    return 0;
 }

@@ -227,6 +227,30 @@ route.cpp.s:
 	cd /workspaces/CS225/Final-project/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/src.dir/build.make src/CMakeFiles/src.dir/route.cpp.s
 .PHONY : route.cpp.s
 
+utilities.o: utilities.cpp.o
+.PHONY : utilities.o
+
+# target to build an object file
+utilities.cpp.o:
+	cd /workspaces/CS225/Final-project/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/src.dir/build.make src/CMakeFiles/src.dir/utilities.cpp.o
+.PHONY : utilities.cpp.o
+
+utilities.i: utilities.cpp.i
+.PHONY : utilities.i
+
+# target to preprocess a source file
+utilities.cpp.i:
+	cd /workspaces/CS225/Final-project/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/src.dir/build.make src/CMakeFiles/src.dir/utilities.cpp.i
+.PHONY : utilities.cpp.i
+
+utilities.s: utilities.cpp.s
+.PHONY : utilities.s
+
+# target to generate assembly for a file
+utilities.cpp.s:
+	cd /workspaces/CS225/Final-project/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/src.dir/build.make src/CMakeFiles/src.dir/utilities.cpp.s
+.PHONY : utilities.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -248,6 +272,9 @@ help:
 	@echo "... route.o"
 	@echo "... route.i"
 	@echo "... route.s"
+	@echo "... utilities.o"
+	@echo "... utilities.i"
+	@echo "... utilities.s"
 .PHONY : help
 
 

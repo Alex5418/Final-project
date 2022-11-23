@@ -7,6 +7,8 @@ file(REMOVE_RECURSE
   "CMakeFiles/src.dir/filereading.cpp.o.d"
   "CMakeFiles/src.dir/route.cpp.o"
   "CMakeFiles/src.dir/route.cpp.o.d"
+  "CMakeFiles/src.dir/utilities.cpp.o"
+  "CMakeFiles/src.dir/utilities.cpp.o.d"
   "libsrc.a"
   "libsrc.pdb"
 )

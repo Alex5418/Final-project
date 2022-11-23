@@ -40,6 +40,7 @@ set(OLD_GLOB
   "/workspaces/CS225/Final-project/src/Utils.cpp"
   "/workspaces/CS225/Final-project/src/filereading.cpp"
   "/workspaces/CS225/Final-project/src/route.cpp"
+  "/workspaces/CS225/Final-project/src/utilities.cpp"
   )
 if(NOT "${NEW_GLOB}" STREQUAL "${OLD_GLOB}")
   message("-- GLOB mismatch!")
@@ -49,6 +50,7 @@ endif()
 # tests_src at CMakeLists.txt:132 (file)
 file(GLOB_RECURSE NEW_GLOB LIST_DIRECTORIES false "/workspaces/CS225/Final-project/tests/*.cpp")
 set(OLD_GLOB
+  "/workspaces/CS225/Final-project/tests/tests.cpp"
   )
 if(NOT "${NEW_GLOB}" STREQUAL "${OLD_GLOB}")
   message("-- GLOB mismatch!")
