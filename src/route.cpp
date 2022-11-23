@@ -85,3 +85,5 @@ bool route::get_codeshare() {
 string route::get_equipment() {
     return equipment_;
 }
+
+

@@ -22,7 +22,7 @@ class Graph
 private:
     /* data */
 
-    int num_vertices; // number of vertices in the graph
+    int num_vertices = 14110; // number of vertices in the graph
     int num_edges; // number of edges in the graph
     vector<vector<int>> adj_matrix; // adjacency matrix
     vector<airport> airport_list; // list of airports
@@ -37,6 +37,10 @@ public:
     void addVertex(int v);
 
     void addEdge(int v, int w);
+
+    bool isConnected(int v, int w);
+
+    void printConnectedAirports(int v);
 
     void BFS(int source, int destination);
 

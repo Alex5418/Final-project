@@ -12,6 +12,8 @@ class route {
         int destination_airport_id,
         bool codeshare,
         string equipment);
+
+
         
         void set_airline(string airline);
         void set_airline_id(int airline_id);
@@ -30,6 +32,9 @@ class route {
         int get_destination_airport_id();
         bool get_codeshare();
         string get_equipment();
+
+        bool Connected_Airport(string airport1, string airport2);
+
     private:
         string airline_;
         int airline_id_;
