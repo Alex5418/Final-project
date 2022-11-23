@@ -2,6 +2,9 @@
 #include <iostream>
 #include <fstream>
 #include <cctype>
+#include <algorithm>
+#include <cmath>
+#include <queue>
 using namespace std;
 
 int graph::isNotVisited(int x, std::vector<int>& path)
