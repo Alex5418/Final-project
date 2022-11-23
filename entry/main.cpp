@@ -43,7 +43,6 @@ int main () {
 
     //fr.print_airport();
 
-<<<<<<< HEAD
     //std::cout << tmp << std::endl;
 
     //test graph
@@ -70,7 +69,3 @@ int main () {
 
     return 0;
 }
-=======
-    std::cout << tmp << std::endl;
-}
->>>>>>> c55a1f7dff549460996ae20cdf6bbd96fab6f336
