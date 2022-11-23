@@ -155,6 +155,30 @@ Airport.cpp.s:
 	cd /workspaces/CS225/Final-project/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/src.dir/build.make src/CMakeFiles/src.dir/Airport.cpp.s
 .PHONY : Airport.cpp.s
 
+Graph.o: Graph.cpp.o
+.PHONY : Graph.o
+
+# target to build an object file
+Graph.cpp.o:
+	cd /workspaces/CS225/Final-project/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/src.dir/build.make src/CMakeFiles/src.dir/Graph.cpp.o
+.PHONY : Graph.cpp.o
+
+Graph.i: Graph.cpp.i
+.PHONY : Graph.i
+
+# target to preprocess a source file
+Graph.cpp.i:
+	cd /workspaces/CS225/Final-project/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/src.dir/build.make src/CMakeFiles/src.dir/Graph.cpp.i
+.PHONY : Graph.cpp.i
+
+Graph.s: Graph.cpp.s
+.PHONY : Graph.s
+
+# target to generate assembly for a file
+Graph.cpp.s:
+	cd /workspaces/CS225/Final-project/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/src.dir/build.make src/CMakeFiles/src.dir/Graph.cpp.s
+.PHONY : Graph.cpp.s
+
 Utils.o: Utils.cpp.o
 .PHONY : Utils.o
 
@@ -263,6 +287,9 @@ help:
 	@echo "... Airport.o"
 	@echo "... Airport.i"
 	@echo "... Airport.s"
+	@echo "... Graph.o"
+	@echo "... Graph.i"
+	@echo "... Graph.s"
 	@echo "... Utils.o"
 	@echo "... Utils.i"
 	@echo "... Utils.s"

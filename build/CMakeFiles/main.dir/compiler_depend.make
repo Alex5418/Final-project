@@ -210,8 +210,11 @@ CMakeFiles/main.dir/entry/main.cpp.o: ../entry/main.cpp \
   ../src/Airport.h \
   ../src/route.h \
   ../src/filereading.h \
-  ../src/utilities.h
+  ../src/utilities.h \
+  ../src/Graph.h
 
+
+../src/Graph.h:
 
 ../src/utilities.h:
 

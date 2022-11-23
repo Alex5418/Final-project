@@ -37,6 +37,7 @@ endif()
 file(GLOB_RECURSE NEW_GLOB LIST_DIRECTORIES false "/workspaces/CS225/Final-project/src/*.cpp")
 set(OLD_GLOB
   "/workspaces/CS225/Final-project/src/Airport.cpp"
+  "/workspaces/CS225/Final-project/src/Graph.cpp"
   "/workspaces/CS225/Final-project/src/Utils.cpp"
   "/workspaces/CS225/Final-project/src/filereading.cpp"
   "/workspaces/CS225/Final-project/src/route.cpp"
