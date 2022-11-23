@@ -17,7 +17,19 @@ int main () {
     fr.readairport("/workspaces/CS225/Final-project/data/airports.txt");
     fr.readairroute("/workspaces/CS225/Final-project/data/Routes.txt");
     // fr.print_route();
-
+    vector<vector<int> > g;
+    g.resize(14110);
+    int tem_destination_id = fr.getRouteVector()[i].get_destination_airport_id();
+    int tem_source_id = fr.getRouteVector()[i].get_source_airport_id();
+    for (unsigned int i = 1; i <= fr.get_route_size; i++) {
+        if (fr.getRouteVector()[i].get_source_airport_id() == 0) {
+            tem_source_id = fr.IATA_to_airpot_id(fr.getRouteVector().at(i).get_source_airport());
+        }
+        if (fr.getRouteVector()[i].get_distination_airport_id() == 0) {
+            tem_distination_id = fr.IATA_to_airpot_id(fr.getRouteVector()[i].get_distination_airport());
+        }
+        g[i][tem_source_id].push_back(tem_destination_id);
+    }
     //test distance calculation method
 
     //get latitude and longtitude of two airports
