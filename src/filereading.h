@@ -23,7 +23,9 @@ class filereading {
 
         vector<airport> getAirportVector();
         vector<route> getRouteVector();
-
+        
+        int get_route_size();
+        int IATA_to_airpot_id(string IATA);
 
     private:
        vector<airport> airports_vector;

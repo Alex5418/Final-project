@@ -124,3 +124,19 @@ double filereading::distance(double lat1, double long1, double lat2, double long
 
     return distance;
 }
+
+vector<route> filereading::getRouteVector() {
+    return routes_vector;
+}
+
+int filereading::get_route_size() {
+    return routes_vector.size();
+}
+
+int filereading::IATA_to_airpot_id(string IATA) {
+    for (unsigned i = 0; i < airports_vector.size(); i++) {
+        if (IATA == airports_vector[i].get_IATA()) {
+            return airports_vector[i].get_airport_id();
+        }
+    }
+}
