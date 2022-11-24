@@ -36,11 +36,14 @@ private:
     //airport id is the id of the airport in the airport.txt file
     //airport index is the index of the airport in the matrix
     //so i need to create a map to map airport id  to airport_list index
-    std::unordered_map <int, int> airport_id_to_index;
+    unordered_map <int, int> airport_id_to_index;
 
-    //or maybe i can map  each index to airport object
+    //or maybe i can map each index to airport object?
+    //the index of the airport in the matrix and the airport id is not one-to-one
+    //so i need to create a map to map airport index to airport object
     //then when adding vertices to the graph, the index of matrix become the key of the map
     //and the value of the map is the airport object
+    unordered_map<int, airport> airport_index_to_airport; 
 
 
 
@@ -54,6 +57,7 @@ public:
     
 
     void MapAirportIdToIndex(); // map airport id to index
+    void MapAirportIndexToAirport(); // map airport index to airport object
 
     void addVertex(int v);
 
@@ -71,11 +75,12 @@ public:
 
     void printConnectedAirports(int v);
 
-    void BFS(int source, int destination);
+    void BFS(int source, int destination); //Breadth First Search, find all the airports that can be reached from the source airport
 
     void printGraph(string filename);
 
-    void dijkstra(int s);
+    void dijkstra(int source_id, int destination_id); //Dijkstra's algorithm, find the shortest path from source to destination
+    int findMinDistance(vector<int> distance, vector<int> visited);
 
     bool isNotVisited(int x, vector<int>& path);
 
