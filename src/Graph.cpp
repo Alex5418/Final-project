@@ -157,7 +157,7 @@ void Graph::BFS (int source, int destination) {
     //print out all airports in the route
     cout << "The route is: " << endl;
     for (int i = 0; i < (int)visited.size(); i++) {
-        cout << airport_list[visited[i]].get_name() << " --> ";
+        cout << airport_list[visited[i]].get_airport_id() << " ";
     }
 
 }
