@@ -8,7 +8,6 @@
 #include "filereading.h"
 #include "utilities.h"
 #include "Graph.h"
-#include "Util.h"
 
 using namespace std;
 
@@ -17,13 +16,22 @@ int main () {
 
     filereading fr;
 
-    fr.readairport("/workspaces/cs225/Final-project/data/airports.txt");
-    fr.readairroute("/workspaces/cs225/Final-project/data/tem.txt");
+    fr.readairport("/workspaces/CS225/Final-project/data/airports.txt");
+    fr.readairroute("/workspaces/CS225/Final-project/data/tmp.txt");
     // fr.print_route();
     vector<vector<int> > g;
-    g.resize(14111);
-    
+    //test distance calculation method
 
+    // g.resize(4);
+    // graph gra;
+    // construct a graph
+    // g = {
+    //     {3,1,2},
+    //     {3},
+    //     {1,0},
+    //     {}
+    // };
+    // gra.BFS(g, 5508, 5499);
 
 
     //get latitude and longtitude of two airports
@@ -37,4 +45,21 @@ int main () {
     // fr.print_airport();
 
     // std::cout << tmp << std::endl;
+
+
+
+
+    Graph G(fr.getAirportVector(), fr.getRouteVector());
+    
+
+    //G.printGraph("full_test.txt");
+
+    G.printConnectedAirports(2966);
+
+    //test BFS to find route
+    // G.BFS(2965, 2990);
+
+    
+
+    return 0;
 }
