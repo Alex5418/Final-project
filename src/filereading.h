@@ -17,8 +17,8 @@ class filereading {
         bool check_num(string var);
 
 
-        double static distance(double lat1, double long1, double lat2, double long2);
-        double static distance(int ID1, int ID2);
+        double distance(double lat1, double long1, double lat2, double long2);
+        double distance(int ID1, int ID2);
 
         // output content inside container
         void print_airport();

@@ -10,8 +10,8 @@
 #include "Graph.h"
 #include "Airport.h"
 #include "route.h"
-#include "utilities.h"
 #include "filereading.h"
+#include "Utils.h"
 
 using namespace std;
 
@@ -29,23 +29,53 @@ Graph::Graph (int v) {
 //The weight of each edge is the distance between two airports
 Graph::Graph (vector<airport> a, vector<route> r) {
     airport_list = a;
+    airport_list.reserve(num_vertices); // reserve space for 14110 airport ids
     route_list = r;
-    // num_vertices = a.size();
+
+    if ((int)a.size() > num_vertices) {
+        num_vertices = a.size();
+    }
+
     num_edges = r.size();
     adj_matrix.resize(num_vertices);
     for (int i = 0; i < num_vertices; i++) {
         adj_matrix[i].resize(num_vertices);
-    } // initialize adjacency matrix with 0
+    } 
+
+    // initialize adjacency matrix with 0
     for (int i = 0; i < num_vertices; i++) {
         for (int j = 0; j < num_vertices; j++) {
             adj_matrix[i][j] = 0;
         }
-    } // add edges to the graph
-    for (int i = 0; i < num_edges; i++) {
-        int source = r[i].get_source_airport_id();
-        int destination = r[i].get_destination_airport_id();
-        adj_matrix[source][destination] = getDistance(source, destination);
     }
+     // add edges to the graph, weight is the distance between two airports
+
+    for (int i = 0; i < num_edges; i++) {
+        int source_id = route_list[i].get_source_airport_id();
+        int destination_id = route_list[i].get_destination_airport_id();
+        airport source = FindAirportById(airport_list, source_id);
+        airport destination = FindAirportById(airport_list, destination_id);
+        double distance = calculateDistance(source, destination);
+        int source_index = airport_id_to_index[source_id];
+        int destination_index = airport_id_to_index[destination_id];
+        addEdge(source_index, destination_index, distance);
+
+    }
+}
+
+void Graph::MapAirportIdToIndex () {
+    for (int i = 0; i < num_vertices; i++) {
+        airport_id_to_index[airport_list[i].get_airport_id()] = i;
+    }
+}
+
+airport Graph::FindAirportById(vector<airport> airports, int id) {
+    for (int i = 0; i < (int)airports.size(); i++) {
+        if (airports[i].get_airport_id() == id) {
+            return airports[i];
+        }
+    }
+    return airport();
 }
 
 
@@ -70,15 +100,23 @@ void Graph::addEdge(int v, int w) {
     }
 }
 
-//calculate distance between two airports
-double Graph::getDistance(int v, int w) {
-    double lat1 = airport_list[v].get_latitude();
-    double long1 = airport_list[v].get_longitude();
-    double lat2 = airport_list[w].get_latitude();
-    double long2 = airport_list[w].get_longitude();
-    double distance = filereading::distance(lat1, long1, lat2, long2);
-    return distance;
+void Graph::addEdge(int v, int w, int weight) {
+    if (v < num_vertices && w < num_vertices) {
+        adj_matrix[v][w] = weight;
+        adj_matrix[w][v] = weight;
+        num_edges++;
+    }
 }
+
+void Graph::updateEdge (int v, int w, int weight) {
+    if (v < num_vertices && w < num_vertices) {
+        adj_matrix[v][w] = weight;
+        adj_matrix[w][v] = weight;
+    }
+}
+
+//calculate distance between two airports
+
 
 //checks if two vertices are connected
 bool Graph::isConnected(int v, int w) {
@@ -136,6 +174,21 @@ void Graph::BFS (int source, int destination) {
     }
 }
 
+//print distance between two airports
+void Graph::printDistance (int v, int w) {
+    //first check if the two airports are connected
+    if (isConnected(v, w)) {
+        cout << "The distance between " << airport_list[v].get_name() << " and " << airport_list[w].get_name() << " is " << adj_matrix[v][w] << " miles." << endl;
+    }
+    else {
+        cout << "The two airports are not connected." << endl;
+    }
+    if (v < num_vertices && w < num_vertices) {
+        cout << adj_matrix[v][w] << endl;
+    }
+}
+
+
 //print the graph and output to test folder
 void Graph::printGraph (string filename) {
     ofstream outfile;
@@ -158,4 +211,6 @@ bool Graph::isNotVisited(int x, vector<int>& path) {
             return 0;
     return 1;
 }
+
+//
 

@@ -1,5 +1,6 @@
 #pragma once
 #include <string>
+#include <vector>
 using namespace std;
 class airport {
     public:
@@ -14,6 +15,8 @@ class airport {
         long double longitude,
         long double altitude,
         string timezone);
+
+        //airport FindAirport (int airport_id);
         
         void set_airport_id(int airport_id);
         void set_name(string name);
@@ -26,6 +29,9 @@ class airport {
         void set_altitude(double altitude);
 
         // string get_airport_id();
+        //find airport by id
+        airport FindAirportById(vector<airport> airports, int id);
+
 
         int get_airport_id();
         string get_name();

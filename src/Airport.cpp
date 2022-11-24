@@ -1,5 +1,9 @@
 #include "Airport.h"
 
+#include <string>
+#include <vector>
+
+
 airport::airport() {
     airport_id_ = 0;
     name_ = "";
@@ -62,6 +66,17 @@ void airport::set_longtitude(double longitude) {
 void airport::set_altitude(double altitude) {
     altitude_ = altitude;
 }
+
+//find airport by id
+airport airport::FindAirportById(std::vector<airport> airports, int id) {
+    for (unsigned i = 0; i < airports.size(); i++) {
+        if (airports[i].get_airport_id() == id) {
+            return airports[i];
+        }
+    }
+    return airport();
+}
+
 
 int airport::get_airport_id() {
     return airport_id_;
