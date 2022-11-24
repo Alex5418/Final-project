@@ -17,7 +17,7 @@ int main () {
     filereading fr;
 
     fr.readairport("/workspaces/CS225/Final-project/data/airports.txt");
-    fr.readairroute("/workspaces/CS225/Final-project/data/Routes.txt");
+    fr.readairroute("/workspaces/CS225/Final-project/data/tmp.txt");
     // fr.print_route();
     vector<vector<int> > g;
     //test distance calculation method
@@ -49,12 +49,12 @@ int main () {
 
     Graph G(fr.getAirportVector(), fr.getRouteVector());
 
-    G.printGraph("test.txt");
+    //G.printGraph("test.txt");
 
-    G.printConnectedAirports(5508);
+    //G.printConnectedAirports(5508);
 
     //test BFS to find route
-    // G.BFS(5508, 5499);
+    G.BFS(2965, 2990);
 
     
 

@@ -8,7 +8,7 @@ airport::airport() {
     IATA_ = "";
     ICAO_ = "";
     latitude_ = 0;
-    longtitude_ = 0;
+    longitude_ = 0;
     altitude_ = 0;
     // timezone_ = "";
 }
@@ -30,7 +30,7 @@ airport::airport(int airport_id,
             IATA_ = IATA;
             ICAO_ = ICAO;
             latitude_ = latitude;
-            longtitude_ = longtitude;
+            longitude_ = longtitude;
             altitude_ = altitude;
             // timezone_ = timezone;
         }
@@ -56,8 +56,8 @@ void airport::set_ICAO(string ICAO) {
 void airport::set_latitude(double latitude) {
     latitude_ = latitude;
 }
-void airport::set_longtitude(double longtitude) {
-    longtitude_ = longtitude;
+void airport::set_longtitude(double longitude) {
+    longitude_ = longitude;
 }
 void airport::set_altitude(double altitude) {
     altitude_ = altitude;
@@ -85,8 +85,8 @@ string airport::get_ICAO() {
 double airport::get_latitude() {
     return latitude_;
 }
-double airport::get_longtitude() {
-    return longtitude_;
+double airport::get_longitude() {
+    return longitude_;
 }
 double airport::get_altitude() {
     return altitude_;

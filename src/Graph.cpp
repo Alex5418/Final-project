@@ -25,6 +25,8 @@ Graph::Graph (int v) {
 }
 
 //Generate graph based on vector of airports and routes
+//Each airport is a vertex, and each route is an edge
+//The weight of each edge is the distance between two airports
 Graph::Graph (vector<airport> a, vector<route> r) {
     airport_list = a;
     route_list = r;
@@ -42,7 +44,7 @@ Graph::Graph (vector<airport> a, vector<route> r) {
     for (int i = 0; i < num_edges; i++) {
         int source = r[i].get_source_airport_id();
         int destination = r[i].get_destination_airport_id();
-        adj_matrix[source][destination] = 1;
+        adj_matrix[source][destination] = getDistance(source, destination);
     }
 }
 
@@ -66,6 +68,16 @@ void Graph::addEdge(int v, int w) {
         adj_matrix[w][v] = 1;
         num_edges++;
     }
+}
+
+//calculate distance between two airports
+double Graph::getDistance(int v, int w) {
+    double lat1 = airport_list[v].get_latitude();
+    double long1 = airport_list[v].get_longitude();
+    double lat2 = airport_list[w].get_latitude();
+    double long2 = airport_list[w].get_longitude();
+    double distance = filereading::distance(lat1, long1, lat2, long2);
+    return distance;
 }
 
 //checks if two vertices are connected

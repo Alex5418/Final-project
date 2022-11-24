@@ -117,13 +117,33 @@ vector<route> filereading::getRouteVector() {
     return routes_vector;
 }
 
-double filereading::distance(double lat1, double long1, double lat2, double long2) {
-    double d_lat = abs(lat1-lat2);
-    double d_long = abs(long1-long2);
-    double distance = sqrt((pow(d_lat, 2.0)+ (pow(d_long, 2.0))));
+// double filereading::distance(double lat1, double long1, double lat2, double long2) {
+//     double d_lat = abs(lat1-lat2);
+//     double d_long = abs(long1-long2);
+//     double distance = sqrt((pow(d_lat, 2.0)+ (pow(d_long, 2.0))));
 
-    return distance;
-}
+//     return distance;
+// }
+
+// double filereading::distance(int ID1, int ID2) {
+//     double lat1, long1, lat2, long2;
+//     bool a = false;
+//     bool b = false;
+//     for (unsigned i = 0; i < airports_vector.size(); i++) {
+//         if (ID1 == airports_vector[i].get_airport_id()) {
+//             lat1 = airports_vector[i].get_latitude();
+//             long1 = airports_vector[i].get_longtitude();
+//             a = true;
+//         }
+//         if (ID2 == airports_vector[i].get_airport_id()) {
+//             lat2 = airports_vector[i].get_latitude();
+//             long2 = airports_vector[i].get_longtitude();
+//             b = true;
+//         }
+//         if (a == true && b == true) break;
+//     }
+//     return distance(lat1, long1, lat2, long2);
+// }
 
 
 int filereading::get_route_size() {

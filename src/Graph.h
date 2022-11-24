@@ -40,6 +40,8 @@ public:
 
     bool isConnected(int v, int w);
 
+    double getDistance(int v, int w);
+
     void printConnectedAirports(int v);
 
     void BFS(int source, int destination);

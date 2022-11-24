@@ -11,7 +11,7 @@ class airport {
         string IATA,
         string ICAO,
         long double latitude,
-        long double longtitude,
+        long double longitude,
         long double altitude,
         string timezone);
         
@@ -22,7 +22,7 @@ class airport {
         void set_IATA(string IATA);
         void set_ICAO(string ICAO);
         void set_latitude(double latitude);
-        void set_longtitude(double longtitude);
+        void set_longtitude(double longitude);
         void set_altitude(double altitude);
 
         // string get_airport_id();
@@ -34,7 +34,7 @@ class airport {
         string get_IATA();
         string get_ICAO();
         double get_latitude();
-        double get_longtitude();
+        double get_longitude();
         double get_altitude();
     private:
         int airport_id_;
@@ -44,6 +44,6 @@ class airport {
         string IATA_;
         string ICAO_;
         long double latitude_;
-        long double longtitude_;
+        long double longitude_;
         long double altitude_;
 };
