@@ -37,9 +37,9 @@ using namespace std;
 double calculateDistance(airport source, airport destination){
     //get the latitude and longitude of the source and destination airports
     double lat1 = source.get_latitude();
-    double lon1 = source.get_longitude();
+    double lon1 = source.get_longtitude();
     double lat2 = destination.get_latitude();
-    double lon2 = destination.get_longitude();
+    double lon2 = destination.get_longtitude();
     //convert the latitude and longitude to radians
     lat1 = lat1 * GRADOS_RADIANES;
     lon1 = lon1 * GRADOS_RADIANES;
