@@ -154,7 +154,7 @@ void Graph::BFS (int source, int destination) {
     } else {
         cout << "There is no route between " << airport_list[source].get_name() << " and " << airport_list[destination].get_name() << endl;
     }
-    //print out all airports in the route
+    //print out all airports in the route 
     cout << "The route is: " << endl;
     for (int i = 0; i < (int)visited.size(); i++) {
         cout << airport_list[visited[i]].get_airport_id() << " ";
@@ -229,7 +229,16 @@ void Graph::dijkstra(int source_id, int destination_id) {
 
 
     //print out the shortest distance
-    cout << "The shortest distance between " << airport_list[source].get_name() << " and " << airport_list[destination].get_name() << " is " << distance[destination] << " miles." << endl;
+    cout << "The shortest distance between " << airport_list[source].get_name() << " and " << airport_list[destination].get_name() << " is " << distance[destination] << " meters." << endl;
+
+    //print out the route
+    cout << "The route is: " << endl;
+    int current = destination;
+    while (current != -1) {
+        cout << airport_list[current].get_airport_id() << " ";
+        current = previous[current];
+    }
+    cout << endl;
 
 }
 
@@ -276,6 +285,7 @@ void Graph::printGraph (string filename) {
         }
     }
 }
+
 
 
 

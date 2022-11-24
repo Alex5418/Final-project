@@ -82,6 +82,8 @@ public:
     void dijkstra(int source_id, int destination_id); //Dijkstra's algorithm, find the shortest path from source to destination
     int findMinDistance(vector<int> distance, vector<int> visited);
 
+    void printShortestPath(int source_id, int destination_id);
+
     bool isNotVisited(int x, vector<int>& path);
 
     airport FindAirportById(vector<airport> airports, int id);

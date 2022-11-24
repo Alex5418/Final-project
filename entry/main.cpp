@@ -17,7 +17,7 @@ int main () {
     filereading fr;
 
     fr.readairport("/workspaces/CS225/Final-project/data/airports.txt");
-    fr.readairroute("/workspaces/CS225/Final-project/data/Routes.txt");
+    fr.readairroute("/workspaces/CS225/Final-project/data/tmp.txt");
     // fr.print_route();
     vector<vector<int> > g;
     //test distance calculation method
