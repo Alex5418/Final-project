@@ -4,11 +4,16 @@
 #include <cctype>
 #include <algorithm>
 #include <cmath>
+#include <math.h>
 using namespace std;
 
 #include "filereading.h"
 #include "Airport.h"
 #include "route.h"
+
+#define PI 3.14159265358979323846
+#define RADIO_TERRESTRE 6372797.56085
+#define GRADOS_RADIANES PI / 180
 
 vector<string> filereading::GetSubstrs(const string& str, char delimiter) {
   size_t last = 0;
@@ -117,14 +122,62 @@ vector<route> filereading::getRouteVector() {
     return routes_vector;
 }
 
-double filereading::distance(double lat1, double long1, double lat2, double long2) {
-    double d_lat = abs(lat1-lat2);
-    double d_long = abs(long1-long2);
-    double distance = sqrt((pow(d_lat, 2.0)+ (pow(d_long, 2.0))));
 
-    return distance;
+// double filereading::distance(double lat1, double long1, double lat2, double long2){
+//     double haversine;
+//     double temp;
+//     double distancia_puntos;
+
+//     lat1  = lat1  * GRADOS_RADIANES;
+//     long1 = long1 * GRADOS_RADIANES;
+//     lat2  = lat2  * GRADOS_RADIANES;
+//     long2 = long2 * GRADOS_RADIANES;
+
+//     haversine = (pow(sin((1.0 / 2) * (lat2 - lat1)), 2)) + ((cos(lat1)) * (cos(lat2)) * (pow(sin((1.0 / 2) * (long2 - long1)), 2)));
+//     temp = 2 * asin(min(1.0, sqrt(haversine)));
+//     distancia_puntos = RADIO_TERRESTRE * temp;
+
+//    return distancia_puntos;
+// }
+
+double filereading::distance(double latitude_new, double longitude_new, double latitude_old, double longitude_old)
+{
+    double  lat_new = latitude_old * GRADOS_RADIANES;
+    double  lat_old = latitude_new * GRADOS_RADIANES;
+    double  lat_diff = (latitude_new-latitude_old) * GRADOS_RADIANES;
+    double  lng_diff = (longitude_new-longitude_old) * GRADOS_RADIANES;
+
+    double  a = sin(lat_diff/2) * sin(lat_diff/2) +
+                cos(lat_new) * cos(lat_old) *
+                sin(lng_diff/2) * sin(lng_diff/2);
+    double  c = 2 * atan2(sqrt(a), sqrt(1-a));
+
+    double  distance = RADIO_TERRESTRE * c;
+    
+    // std::cout <<__FILE__ << "." << __FUNCTION__ << " line:" << __LINE__ << "  "
+    
+    return distance/1000;
 }
 
+double filereading::distance(int ID1, int ID2) {
+    double lat1, long1, lat2, long2;
+    bool a = false;
+    bool b = false;
+    for (unsigned i = 0; i < airports_vector.size(); i++) {
+        if (ID1 == airports_vector[i].get_airport_id()) {
+            lat1 = airports_vector[i].get_latitude();
+            long1 = airports_vector[i].get_longtitude();
+            a = true;
+        }
+        if (ID2 == airports_vector[i].get_airport_id()) {
+            lat2 = airports_vector[i].get_latitude();
+            long2 = airports_vector[i].get_longtitude();
+            b = true;
+        }
+        if (a == true && b == true) break;
+    }
+    return distance(lat1, long1, lat2, long2);
+}
 
 int filereading::get_route_size() {
     return routes_vector.size();
