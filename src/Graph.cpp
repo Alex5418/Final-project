@@ -394,8 +394,36 @@ void Graph::betweennessCentrality () {
     
 }
 
+vector<size_t> Graph::sort_indices(const vector<double> &v) {
+    
+      // initialize original index locations
+      vector<size_t> idx(v.size());
+      iota(idx.begin(), idx.end(), 0);
+    
+      // sort indices based on comparing values in v
+      sort(idx.begin(), idx.end(),
+         [&v](size_t i1, size_t i2) {return v[i1] < v[i2];});
+    
+      return idx;
+}
+
+
+
+
 int Graph::max (vector<int> &v) {
     int max = 0;
+    int num = 0;
+    for (unsigned i = 0; i < v.size(); i++) {
+        if (v[i] > max) {
+            max = v[i];
+            num = i;
+        }
+    }
+    return num;
+}
+
+double Graph::max (vector<double> &v) {
+    double max = 0;
     int num = 0;
     for (unsigned i = 0; i < v.size(); i++) {
         if (v[i] > max) {
@@ -409,7 +437,80 @@ int Graph::max (vector<int> &v) {
 
 //PageRank
 //finds the most important airports
-//parameters: number of airports to find
+
+vector<size_t> Graph::SimplePageRank(int top) {
+    // vector<size_t> Rank;
+
+    // // assume each page has equal weight at the beginning
+    // double initial_PR = 1.0/numAirports;
+    // vector<double> PR(numAirports,initial_PR);
+
+    // // initialize the number of outbound links for each airport
+    // vector<double> L(numAirports,0);
+    // for (size_t row = 0; row < numAirports; row++) {
+    //     int num_zeros = count(adj_[row].begin(), adj_[row].end(), 0);
+    //     L[row] = numAirports-num_zeros;
+    // }
+
+    // // update weight of each airport using PR(i) = sum of PR(j)/L(j)
+    // //     where j is each airport that has a route ending in i
+    // for (size_t i = 0; i < PR.size(); i++) {
+    //     double income = 0;
+    //     for (size_t j = 0; j < PR.size(); j++) {
+    //         if (adj_[j][i]>0) {
+    //             income += initial_PR/L[j];
+    //         }   
+    //     }
+    //     PR[i] = income;      
+    // }
+    // // cout<<endl;
+    // // cout<<"PageRank value for each Airport is:"<<endl;
+    // // cout<<"    ";
+    // // printVec(PR);
+
+    // // sort the weight of airports and keep track of the indices
+    // int count = 0;
+    // for (auto i: sort_indices(PR)) {
+    //     if (count==top) {
+    //         break;
+    //     }
+    //     Rank.push_back(i);
+    //     count++;
+    // }
+    // return Rank;
+
+    vector<size_t> Rank;
+
+    double initial_PR = 1.0/airport_list.size();
+    vector<double> PR(airport_list.size(),initial_PR);
+
+    vector<double> Links(airport_list.size(),0);
+    for (size_t row = 0; row < airport_list.size(); row++) {
+        int num_zeros = count(adj_matrix[row].begin(), adj_matrix[row].end(), 0);
+        Links[row] = airport_list.size()-num_zeros;
+    }
+
+    for (size_t i = 0; i < PR.size(); i++) {
+        double income = 0;
+        for (size_t j = 0; j < PR.size(); j++) {
+            if (adj_matrix[j][i]>0) {
+                income += initial_PR/Links[j];
+            }   
+        }
+        PR[i] = income;
+    }
+    int count = 0;
+    for (auto i: sort_indices(PR)) {
+        if (count==top) {
+            break;
+        }
+        Rank.push_back(i);
+        count++;
+    }
+    return Rank;
+
+
+}
 
 
 

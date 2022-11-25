@@ -49,7 +49,7 @@ private:
     //Keep a global or a static variable count to store the count
     //of the number of times the function is called
     //and print the count when the program terminates.
-    static int count;
+    //static int count;
 
     //BFS's graph
     vector<vector<int> > g;
@@ -116,10 +116,15 @@ public:
     void betweennessCentrality();
 
     int max(vector<int> &v);
+    double max(vector<double> &v);
+
+    
 
     //pagerank algorithm
     //find the most important airport by pagerank algorithm
-    void PageRank(int source_id, int destination_id);
+    vector<size_t> SimplePageRank(int top = 10);
+
+    vector<size_t> sort_indices(const vector<double> &v);
 
     //setter
     void set_num_vertices(int v);

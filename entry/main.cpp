@@ -17,7 +17,7 @@ int main () {
     filereading fr;
 
     fr.readairport("/workspaces/CS225/Final-project/data/airports.txt");
-    fr.readairroute("/workspaces/CS225/Final-project/data/tmp.txt");
+    fr.readairroute("/workspaces/CS225/Final-project/data/Routes.txt");
     // fr.print_route();
     vector<vector<int> > g;
     //test distance calculation method
@@ -64,13 +64,16 @@ int main () {
     // for (auto i : tmp_vec) {
     //     std::cout << i << std::endl;
     // }
-    G.dijkstra(2990, 4078);
+    //G.dijkstra(2990, 4078);
 
     //test betweenness centrality
     //G.betweennessCentrality();
 
     //test pagerank
-    // G.PageRank();
+    vector<size_t> test_vec = G.SimplePageRank(10);
+    for (auto i : test_vec) {
+        std::cout << i << std::endl;
+    }
     
 
     return 0;
