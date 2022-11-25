@@ -71,8 +71,11 @@ int main () {
 
     //test pagerank
     vector<size_t> test_vec = G.SimplePageRank(10);
+    // for (auto i : test_vec) {
+    //     std::cout << i << std::endl;
+    // }
     for (auto i : test_vec) {
-        std::cout << i << std::endl;
+        std::cout << i << " " << fr.getAirportVector()[i].get_name() << " " << fr.getAirportVector()[i].get_country()<< std::endl;
     }
     
 
