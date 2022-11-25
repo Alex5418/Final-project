@@ -51,7 +51,8 @@ private:
     //and print the count when the program terminates.
     static int count;
 
-
+    //BFS's graph
+    vector<vector<int> > g;
 
 
 
@@ -60,6 +61,9 @@ public:
     Graph(int v); // constructor
     Graph(vector<airport> a, vector<route> r); //
 
+    // use to create BFS's graph
+    void SetBfsGraph(vector<airport> a, vector<route> r);
+    int IATA_to_airpot_id(string IATA);
     
 
     void MapAirportIdToIndex(); // map airport id to index

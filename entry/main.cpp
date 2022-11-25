@@ -60,10 +60,17 @@ int main () {
     //G.BFS(2990, 4078);
 
     //test dijkstra to find route
-    //G.dijkstra(3406, 4078);
+    // vector<int> tmp_vec = G.dijkstraHelper(3406, 4078);
+    // for (auto i : tmp_vec) {
+    //     std::cout << i << std::endl;
+    // }
+    G.dijkstra(2990, 4078);
 
     //test betweenness centrality
-    G.betweennessCentrality();
+    //G.betweennessCentrality();
+
+    //test pagerank
+    // G.PageRank();
     
 
     return 0;

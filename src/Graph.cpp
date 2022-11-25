@@ -31,6 +31,7 @@ Graph::Graph (int v) {
 //Each airport is a vertex, and each route is an edge
 //The weight of each edge is the distance between two airports
 Graph::Graph (vector<airport> a, vector<route> r) {
+    g.resize(14111);
     num_vertices = a.size();
     num_edges = r.size();
     adj_matrix.resize(num_vertices);
@@ -49,7 +50,32 @@ Graph::Graph (vector<airport> a, vector<route> r) {
         adj_matrix[destination][source] = distance;
     }
 }
+//
+void Graph::SetBfsGraph(vector<airport> a, vector<route> r){
+    airport_list = a;
+    route_list = r;
+    for (unsigned int i = 0; i < r.size(); i++) {
+        int tem_destination_id = r[i].get_destination_airport_id();
+        int tem_source_id = r[i].get_source_airport_id();
+        if (r[i].get_source_airport_id() == 0) {
+            tem_source_id = IATA_to_airpot_id(r[i].get_source_airport());
+        }
+        if (r[i].get_destination_airport_id() == 0) {
+            tem_destination_id = IATA_to_airpot_id(r[i].get_destination_airport());
+        }
+        g[tem_source_id].push_back(tem_destination_id);
+    }
+}
 
+int Graph::IATA_to_airpot_id(string IATA) {
+    for (unsigned i = 0; i < airport_list.size(); i++) {
+        if (IATA == airport_list[i].get_IATA()) {
+            return airport_list[i].get_airport_id();
+        }
+    }
+    return 0;
+}
+//
 void Graph::MapAirportIdToIndex () {
     for (int i = 0; i < num_vertices; i++) {
         airport_id_to_index[airport_list[i].get_airport_id()] = i;
@@ -135,36 +161,33 @@ void Graph::printConnectedAirports(int v) {
 //breadth first search
 //used to find all possible routes between two airports
 //parameters: departure airport, destination airport
-void Graph::BFS (int source, int destination) {
-    int source_index = airport_id_to_index[source];
-    int destination_index = airport_id_to_index[destination];
-
-    queue<int> q;
-    vector<bool> visited(num_vertices, false);
-    vector<int> parent(num_vertices, -1);
-    q.push(source_index);
-    visited[source_index] = true;
+void Graph::BFS(int source, int destination) {
+    queue<vector<int> > q;
+    vector<int> path;
+    vector<vector<int>> route;
+    path.push_back(source);
+    q.push(path);
     while (!q.empty()) {
-        int current = q.front();
+        path = q.front();
         q.pop();
-        for (int i = 0; i < num_vertices; i++) {
-            if (adj_matrix[current][i] >= 1 && !visited[i]) {
-                q.push(i);
-                visited[i] = true;
-                parent[i] = current;
+        int last = path[path.size() - 1];
+        
+        if (last == destination)
+            route.push_back(path);
+        
+        for (unsigned i = 0; i < g[last].size(); i++) {
+            if (isNotVisited(g[last][i], path)) {
+                vector<int> newpath(path);
+                newpath.push_back(g[last][i]);
+                q.push(newpath);
             }
         }
     }
-
-    vector<int> path;
-    int current = destination_index;
-    while (current != -1) {
-        path.push_back(current);
-        current = parent[current];
-    }
-    reverse(path.begin(), path.end());
-    for (int i = 0; i < (int)path.size(); i++) {
-        cout << airport_index_to_airport[path[i]].get_name() << endl;
+    for(unsigned i = 0; i < route.size();i ++) {
+        for(unsigned j = 0 ; j < route[i].size(); j++) {
+            cout<< route[i][j] << " ";
+        }
+        cout<< endl;
     }
 }
 
