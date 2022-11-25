@@ -46,6 +46,12 @@ private:
     unordered_map<int, airport> airport_index_to_airport; 
 
 
+    //Keep a global or a static variable count to store the count
+    //of the number of times the function is called
+    //and print the count when the program terminates.
+    static int count;
+
+
 
 
 
@@ -75,11 +81,22 @@ public:
 
     void printConnectedAirports(int v);
 
-    void BFS(int source, int destination); //Breadth First Search, find all the airports that can be reached from the source airport
+    void BFS(int source, int destination); //traverse the graph, find all the airports that can be reached from the source airport and all possible routes
+
+    /*
+    Create a recursive function that takes the index of a node of a graph and the destination index. Keep a global or a static variable count to store the count. 
+    Keep a record of the nodes visited using a visited array and while returning mark the current node to be unvisited to discover other paths.
+    if the current node is the destination then increase the count.
+    Else for all the adjacent nodes, i.e. nodes that are accessible from the current node, call the recursive function with the index of the adjacent node and the destination.
+    Print the Count as the required answer.
+    */
+    int count_paths(int src, int dst, int vertices);
+    void path_counter(int src, int dst, int& path_count, vector<bool>& visited);
 
     void printGraph(string filename);
 
     void dijkstra(int source_id, int destination_id); //Dijkstra's algorithm, find the shortest path from source to destination
+    vector<int> dijkstraHelper(int source, int destination); //Dijkstra's algorithm without printing the path
     int findMinDistance(vector<int> distance, vector<int> visited);
 
     void printShortestPath(int source_id, int destination_id);
@@ -87,6 +104,18 @@ public:
     bool isNotVisited(int x, vector<int>& path);
 
     airport FindAirportById(vector<airport> airports, int id);
+
+    void FindAllRoutes(int source_id, int destination_id);
+    void FindAllRoutesHelper(int source_id, int destination_id, vector<int>& path, vector<int>& visited);
+
+    //Betweenness Centrality
+    void betweennessCentrality();
+
+    int max(vector<int> &v);
+
+    //pagerank algorithm
+    //find the most important airport by pagerank algorithm
+    void PageRank(int source_id, int destination_id);
 
     //setter
     void set_num_vertices(int v);

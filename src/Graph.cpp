@@ -7,6 +7,7 @@
 #include <queue>
 #include <vector>
 #include <unordered_map>
+#include <bits/stdc++.h>
 #include <limits.h>
 
 #include "Graph.h"
@@ -132,35 +133,42 @@ void Graph::printConnectedAirports(int v) {
 }
 
 //breadth first search
-//finds all possible routes between two airports
+//used to find all possible routes between two airports
 //parameters: departure airport, destination airport
 void Graph::BFS (int source, int destination) {
-    vector<int> visited;
+    int source_index = airport_id_to_index[source];
+    int destination_index = airport_id_to_index[destination];
+
     queue<int> q;
-    q.push(source);
-    visited.push_back(source);
+    vector<bool> visited(num_vertices, false);
+    vector<int> parent(num_vertices, -1);
+    q.push(source_index);
+    visited[source_index] = true;
     while (!q.empty()) {
         int current = q.front();
         q.pop();
         for (int i = 0; i < num_vertices; i++) {
-            if (adj_matrix[current][i] >= 1 && find(visited.begin(), visited.end(), i) == visited.end()) {
+            if (adj_matrix[current][i] >= 1 && !visited[i]) {
                 q.push(i);
-                visited.push_back(i);
+                visited[i] = true;
+                parent[i] = current;
             }
         }
     }
-    if (find(visited.begin(), visited.end(), destination) != visited.end()) {
-        cout << "There is a route between " << airport_list[source].get_name() << " and " << airport_list[destination].get_name() << endl;
-    } else {
-        cout << "There is no route between " << airport_list[source].get_name() << " and " << airport_list[destination].get_name() << endl;
-    }
-    //print out all airports in the route 
-    cout << "The route is: " << endl;
-    for (int i = 0; i < (int)visited.size(); i++) {
-        cout << airport_list[visited[i]].get_airport_id() << " ";
-    }
 
+    vector<int> path;
+    int current = destination_index;
+    while (current != -1) {
+        path.push_back(current);
+        current = parent[current];
+    }
+    reverse(path.begin(), path.end());
+    for (int i = 0; i < (int)path.size(); i++) {
+        cout << airport_index_to_airport[path[i]].get_name() << endl;
+    }
 }
+
+
 
 
 //dijkstra's algorithm
@@ -178,6 +186,8 @@ for each vertex v in Graph:             // Initialization
             dist[w] := dis[v] + len[v,w]  // A shorter path to w has been found
             previous[w] := v
 */
+
+
 void Graph::dijkstra(int source_id, int destination_id) {
 
     //first convert airport id to index in matrix
@@ -242,6 +252,64 @@ void Graph::dijkstra(int source_id, int destination_id) {
 
 }
 
+//same as previous dijkstra's algorithm, but no printing, instead returns the shortest distance in vector of path airport ids
+vector<int> Graph::dijkstraHelper (int source, int destination) {
+    //first convert airport id to index in matrix
+    int source_index = airport_id_to_index[source];
+    int destination_index = airport_id_to_index[destination];
+
+    //create a vector to store the shortest distance from source to each airport
+    vector<double> distance;
+    distance.resize(num_vertices);
+    //for each vertex, set the distance to infinity
+    for (int i = 0; i < num_vertices; i++) {
+        distance[i] = INT_MAX;
+    }
+    distance[source_index] = 0;
+    vector<int> previous;
+    previous.resize(num_vertices);
+    previous[source_index] = -1;
+    vector<bool> visited;
+    visited.resize(num_vertices);
+    for (int i = 0; i < num_vertices; i++) {
+        visited[i] = false;
+    }
+
+    //while the destination has not been visited
+    while (!visited[destination_index]) {
+        //find the vertex with the least distance from the source
+        int least_distance = INT_MAX;
+        int least_distance_index = -1;
+        for (int i = 0; i < num_vertices; i++) {
+            if (!visited[i] && distance[i] < least_distance) {
+                least_distance = distance[i];
+                least_distance_index = i;
+            }
+        }
+        //set the vertex with the least distance to visited
+        visited[least_distance_index] = true;
+        //for each edge (v,w):
+        for (int i = 0; i < num_vertices; i++) {
+            //if dis[v] + len[v,w] < dist[w]:
+            if (adj_matrix[least_distance_index][i] >= 1 && distance[least_distance_index] + adj_matrix[least_distance_index][i] < distance[i]) {
+                //dist[w] := dis[v] + len[v,w]  // A shorter path to w has been found
+                distance[i] = distance[least_distance_index] + adj_matrix[least_distance_index][i];
+                //previous[w] := v
+                previous[i] = least_distance_index;
+            }
+        }
+    }
+
+    //fill in the path vector
+    vector<int> paths;
+    int current = destination_index;
+    while (current != -1) {
+        paths.push_back(airport_list[current].get_airport_id());
+        current = previous[current];
+    }
+    return paths;
+}
+
 int Graph::findMinDistance(vector<int> distance, vector<int> visited) {
     int min = INT_MAX;
     int min_index = -1;
@@ -253,6 +321,73 @@ int Graph::findMinDistance(vector<int> distance, vector<int> visited) {
     }
     return min_index;
 }
+
+//Betweenness Centrality
+//finds the most important airports
+//parameters: number of airports to find
+
+// void BetweennessCentrality () {
+//     //for each edge (u,v) in graph
+//     //remove edge (u,v)
+//     //run dijkstra's algorithm
+//     //for each vertex w on the shortest path from u to v
+//     //increment the number of shortest paths that pass through w
+//     //add the number of shortest paths that pass through w to the betweenness centrality of w
+//     //add edge (u,v) back to the graph
+//     //divide the betweenness centrality of each vertex by 2
+//     //sort the vertices by betweenness centrality
+
+//     //print the top n vertices
+
+
+
+
+
+    
+// }
+
+//Betweenness Centrality
+void Graph::betweennessCentrality () {
+    vector<int> weight (num_vertices, 0);
+
+    for (int i = 0; i < num_vertices; i++) {
+        for (int x = 0; x < num_vertices; x++) {
+            if (x == i) { continue; }
+            for (int y = 0; y < num_vertices; y++) {
+                if (y == i) { continue; }
+                //run dijkstra's algorithm
+                vector<int> paths = dijkstraHelper(x, y);
+
+                if (find(paths.begin(), paths.end(), i) != paths.end()) {
+                    weight[i]++;
+                }
+            }
+        }
+    }
+    
+    
+    cout << "The most important airport is " << airport_list[max(weight)].get_name() << endl;
+
+    
+}
+
+int Graph::max (vector<int> &v) {
+    int max = 0;
+    int num = 0;
+    for (unsigned i = 0; i < v.size(); i++) {
+        if (v[i] > max) {
+            max = v[i];
+            num = i;
+        }
+    }
+    return num;
+}
+
+
+//PageRank
+//finds the most important airports
+//parameters: number of airports to find
+
 
 
 

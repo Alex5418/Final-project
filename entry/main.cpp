@@ -52,7 +52,7 @@ int main () {
     Graph G(fr.getAirportVector(), fr.getRouteVector());
     
 
-    G.printGraph("full_test.txt");
+    //G.printGraph("full_test.txt");
 
     //G.printConnectedAirports(2966);
 
@@ -60,8 +60,10 @@ int main () {
     //G.BFS(2990, 4078);
 
     //test dijkstra to find route
-    G.dijkstra(2990, 4078);
+    //G.dijkstra(3406, 4078);
 
+    //test betweenness centrality
+    G.betweennessCentrality();
     
 
     return 0;
