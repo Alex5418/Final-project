@@ -48,11 +48,31 @@ TEST_CASE("test build Graph", "[weight=0][part=1]") {
   std::vector<route> test_route_vec = test_fr.getRouteVector();
   Graph test_G(test_airport_vec, test_route_vec);
   //print names of airports in this graph
-  std::vector <airport> test_airports = test_G.getAirportList();
-  for (auto a : test_airports) {
-    std::cout << a.get_name() << std::endl;
-  }
+  //std::vector <airport> test_airports = test_G.getAirportList();
+  // for (auto a : test_airports) {
+  //   std::cout << a.get_name() << std::endl;
+  // }
 
   REQUIRE(test_G.get_num_vertices() == 27);
+
+}
+
+TEST_CASE("test dijkastra", "[weight=0][part=1]") {
+
+  filereading test_fr;
+  test_fr.readairport("/workspaces/CS225/Final-project/data/Airports_test");
+  test_fr.readairroute("/workspaces/CS225/Final-project/data/Routes");
+  std::vector<airport> test_airport_vec = test_fr.getAirportVector();
+  std::vector<route> test_route_vec = test_fr.getRouteVector();
+  Graph test_G(test_airport_vec, test_route_vec);
+  //print names of airports in this graph
+  //std::vector <airport> test_airports = test_G.getAirportList();
+  // for (auto a : test_airports) {
+  //   std::cout << a.get_name() << std::endl;
+  // }
+  // double test_shortest_distance = Shortest_Path(8516, 8560);
+
+  // REQUIRE(test_shortest_distance == 0);
+  REQUIRE(true == true);
 
 }

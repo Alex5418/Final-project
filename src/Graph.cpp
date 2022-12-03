@@ -266,6 +266,10 @@ void Graph::dijkstra(int source_id, int destination_id) {
             }
         }
     }
+    //if the destination is not reachable
+    if (distance[destination] == INT_MAX) {
+        cout << "No route found" << endl;
+    }
 
 
 
@@ -351,6 +355,56 @@ int Graph::findMinDistance(vector<int> distance, vector<int> visited) {
         }
     }
     return min_index;
+}
+
+//same as previous dijkstra's algorithm, but no printing, instead returns the shortest distance between two airports
+double Graph::find_Shortest_Distance (int source, int destination) {
+    //first convert airport id to index in matrix
+    int source_index = airport_id_to_index[source];
+    int destination_index = airport_id_to_index[destination];
+
+    //create a vector to store the shortest distance from source to each airport
+    vector<double> distance;
+    distance.resize(num_vertices);
+    //for each vertex, set the distance to infinity
+    for (int i = 0; i < num_vertices; i++) {
+        distance[i] = INT_MAX;
+    }
+    distance[source_index] = 0;
+    vector<int> previous;
+    previous.resize(num_vertices);
+    previous[source_index] = -1;
+    vector<bool> visited;
+    visited.resize(num_vertices);
+    for (int i = 0; i < num_vertices; i++) {
+        visited[i] = false;
+    }
+
+    //while the destination has not been visited
+    while (!visited[destination_index]) {
+        //find the vertex with the least distance from the source
+        int least_distance = INT_MAX;
+        int least_distance_index = -1;
+        for (int i = 0; i < num_vertices; i++) {
+            if (!visited[i] && distance[i] < least_distance) {
+                least_distance = distance[i];
+                least_distance_index = i;
+            }
+        }
+        //set the vertex with the least distance to visited
+        visited[least_distance_index] = true;
+        //for each edge (v,w):
+        for (int i = 0; i < num_vertices; i++) {
+            //if dis[v] + len[v,w] < dist[w]:
+            if (adj_matrix[least_distance_index][i] >= 1 && distance[least_distance_index] + adj_matrix[least_distance_index][i] < distance[i]) {
+                //dist[w] := dis[v] + len[v,w]  // A shorter path to w has been found
+                distance[i] = distance[least_distance_index] + adj_matrix[least_distance_index][i];
+                //previous[w] := v
+                previous[i] = least_distance_index;
+            }
+        }
+    }
+    return distance[destination_index];
 }
 
 //Betweenness Centrality

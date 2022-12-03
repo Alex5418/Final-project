@@ -107,6 +107,7 @@ public:
 
     void dijkstra(int source_id, int destination_id); //Dijkstra's algorithm, find the shortest path from source to destination
     vector<int> dijkstraHelper(int source, int destination); //Dijkstra's algorithm without printing the path
+    double find_Shortest_Distance(int source, int destination); //Dijkstra's algorithm, find the shortest path from source to destination
     int findMinDistance(vector<int> distance, vector<int> visited);
 
     void printShortestPath(int source_id, int destination_id);

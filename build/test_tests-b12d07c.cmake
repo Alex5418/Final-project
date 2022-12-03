@@ -4,4 +4,6 @@ add_test( [==[test read data from file]==] /workspaces/CS225/Final-project/build
 set_tests_properties( [==[test read data from file]==] PROPERTIES WORKING_DIRECTORY /workspaces/CS225/Final-project/build)
 add_test( [==[test build Graph]==] /workspaces/CS225/Final-project/build/test [==[test build Graph]==]  )
 set_tests_properties( [==[test build Graph]==] PROPERTIES WORKING_DIRECTORY /workspaces/CS225/Final-project/build)
-set( test_TESTS [==[test for test case]==] [==[test read data from file]==] [==[test build Graph]==])
+add_test( [==[test dijkastra]==] /workspaces/CS225/Final-project/build/test [==[test dijkastra]==]  )
+set_tests_properties( [==[test dijkastra]==] PROPERTIES WORKING_DIRECTORY /workspaces/CS225/Final-project/build)
+set( test_TESTS [==[test for test case]==] [==[test read data from file]==] [==[test build Graph]==] [==[test dijkastra]==])

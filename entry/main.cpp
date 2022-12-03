@@ -50,6 +50,8 @@ int main () {
 
 
     Graph G(fr.getAirportVector(), fr.getRouteVector());
+
+
     
 
     //G.printGraph("full_test.txt");
@@ -64,19 +66,22 @@ int main () {
     // for (auto i : tmp_vec) {
     //     std::cout << i << std::endl;
     // }
-    //G.dijkstra(2990, 4078);
+    G.dijkstra(8560, 13144);
+
+    //test find shortest path
+    //G.find_Shortest_Distance(8516, 8560);
 
     //test betweenness centrality
     //G.betweennessCentrality();
 
     //test pagerank
-    vector<size_t> test_vec = G.SimplePageRank(10);
+    //vector<size_t> test_vec = G.SimplePageRank(10);
     // for (auto i : test_vec) {
     //     std::cout << i << std::endl;
     // }
-    for (auto i : test_vec) {
-        std::cout << i << " " << fr.getAirportVector()[i].get_name() << " " << fr.getAirportVector()[i].get_country()<< std::endl;
-    }
+    // for (auto i : test_vec) {
+    //     std::cout << i << " " << fr.getAirportVector()[i].get_name() << " " << fr.getAirportVector()[i].get_country()<< std::endl;
+    // }
     
 
     return 0;
