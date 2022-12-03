@@ -9,6 +9,8 @@
 #include "route.h"
 #include "Utils.h"
 #include "filereading.h"
+#include "Graph.h"
+
 
 using namespace std;
 
@@ -64,6 +66,8 @@ public:
     // use to create BFS's graph
     void SetBfsGraph(vector<airport> a, vector<route> r);
     int IATA_to_airpot_id(string IATA);
+
+    int get_num_vertices();
     
 
     void MapAirportIdToIndex(); // map airport id to index
@@ -78,6 +82,8 @@ public:
     void updateEdge(int v, int w, int weight);
 
     bool isConnected(int v, int w);
+
+    vector<airport> getAirportList();
 
     double getDistance(int v, int w);
 

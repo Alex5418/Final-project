@@ -134,6 +134,14 @@ void Graph::updateEdge (int v, int w, int weight) {
     }
 }
 
+int Graph::get_num_vertices () {
+    return num_vertices;
+}
+
+std::vector<airport> Graph::getAirportList() {
+    return airport_list;
+}
+
 //calculate distance between two airports
 
 

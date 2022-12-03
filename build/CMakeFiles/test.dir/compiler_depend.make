@@ -292,7 +292,8 @@ CMakeFiles/test.dir/tests/tests.cpp.o: ../tests/tests.cpp \
   /usr/include/c++/11/bits/stl_deque.h \
   /usr/include/c++/11/bits/deque.tcc \
   /usr/include/c++/11/debug/deque \
-  /usr/include/c++/11/bits/stl_queue.h
+  /usr/include/c++/11/bits/stl_queue.h \
+  ../src/Graph.h
 
 
 /usr/include/c++/11/bits/stl_queue.h:
@@ -532,6 +533,8 @@ CMakeFiles/test.dir/tests/tests.cpp.o: ../tests/tests.cpp \
 /usr/include/c++/11/exception:
 
 ../tests/tests.cpp:
+
+../src/Graph.h:
 
 /usr/include/c++/11/bits/postypes.h:
 
