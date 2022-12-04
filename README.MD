@@ -1,6 +1,7 @@
 # Final Project For Team4321
-## Table Content
-- Introduction
+## Introduction
+**Contributed by Sirui Zhang, Muye Yuan, Yiduo Wang, Zonghan Wu**  
+All the 
 
 **Contributed by Sirui Zhang, Muye Yuan, Yiduo Wang, Zonghan Wu**
 This project is done by team4321 in 2022 fall semester cs 225 class. Contributors: Sirui Zhang, Muye Yuan, Yiduo Wang, Wuzong Han.
