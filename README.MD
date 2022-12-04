@@ -12,4 +12,9 @@ This project is done by team4321 in 2022 fall semester cs 225 class. The dataset
   -Contain airports.txt, Routes.txt which are two datasets we used in this project. Besides these two, we have airports_test which used in testcase, and tmp.txt for BFS since it will run a very long time for BFS to go through all routes. [Link]https://github.com/Alex5418/Final-project/tree/main/data
 ### /entry
   -Contain main.cpp, which we used to run all algorithms, and read files. This part is vital for us to show how this code can work. You can use code from this part to seeoutputs. [Link]https://github.com/Alex5418/Final-project/blob/main/entry/main.cpp
-
+### /lib
+ - Help to build environment [link]https://github.com/Alex5418/Final-project/tree/main/lib
+### /src
+  - This is the folder we have all algorithms, and readfile in. Airport.cpp and Airport.h are for after reading files, we can use fuctions inside to assign data into mean variable including airport_id, name, city, country, IATA, ICAO, latitude, longtitude, altitude. Similarly, routes.cpp and routes.h are used to assign routes after reading file. 
+  - filereading.h and filereading.cpp help us to read data into correct forms. For example, we need to get substring by GetSubstrs from txt file, and some strings have quotation mark we want to use remove_quote to remove them. Then we give data meanings by readairport and readairroute. In this file, we also have distance to find the distance in km between two airports.
+  - 
