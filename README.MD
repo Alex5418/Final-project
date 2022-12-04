@@ -24,3 +24,6 @@ This project is done by team4321 in 2022 fall semester cs 225 class. The dataset
 ## Running Instruction
 ### Test case instruction
 First you need to create your own build file by typing " mkdir build "" cd build " in terminal, and "cmake..", then you need to compile by typing "make", after that, you can use "./test" to run the test. The test contains read file tests, distance and Getsubtrs tests, and also BFS, Dijkstra, and PageRank tests.
+### Run the executable instruction
+You can use main.cpp in /entry to run. To run main.cpp, first run make, then run ./main. You want to unquote between line 25 to 26. You can change the data in
+#这部分要等main改好了才能写
