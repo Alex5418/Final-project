@@ -21,8 +21,7 @@ int main () {
     // fr.print_route();
     vector<vector<int> > g;
     //test distance calculation method
-
-    // g.resize(4);
+    
     // graph gra;
     // construct a graph
     // g = {
@@ -32,7 +31,8 @@ int main () {
     //     {}
     // };
     // gra.BFS(g, 5508, 5499);
-
+    
+    //BFS test end here
 
     //get latitude and longtitude of two airports
     // double lat1 = fr.getAirportVector()[0].get_latitude();
