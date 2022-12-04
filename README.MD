@@ -8,4 +8,6 @@ This project is done by team4321 in 2022 fall semester cs 225 class. The dataset
   - Dijkstra: Used to find the shortest route
   - PageRank: Used to find the most important airports
 ## Documents
+/Data
+  -Contain airports.txt, Routes.txt which are two datasets we used in this project. Besides these two, we have airports_test which used in testcase, and tmp.txt for BFS since it will run a very long time for BFS to go through all routes.
 
