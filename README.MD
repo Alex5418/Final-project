@@ -10,4 +10,6 @@ This project is done by team4321 in 2022 fall semester cs 225 class. The dataset
 ## Documents
 ### /data
   -Contain airports.txt, Routes.txt which are two datasets we used in this project. Besides these two, we have airports_test which used in testcase, and tmp.txt for BFS since it will run a very long time for BFS to go through all routes. [Link]https://github.com/Alex5418/Final-project/tree/main/data
+### /entry
+  -Contain main.cpp, which we used to run all algorithms, and read files. This part is vital for us to show how this code can work. You can use code from this part to seeoutputs. [Link]https://github.com/Alex5418/Final-project/blob/main/entry/main.cpp
 
