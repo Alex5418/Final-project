@@ -19,4 +19,8 @@ This project is done by team4321 in 2022 fall semester cs 225 class. The dataset
   - filereading.h and filereading.cpp help us to read data into correct forms. For example, we need to get substring by GetSubstrs from txt file, and some strings have quotation mark we want to use remove_quote to remove them. Then we give data meanings by readairport and readairroute. In this file, we also have distance to find the distance in km between two airports. [link]https://github.com/Alex5418/Final-project/blob/main/src/filereading.cpp
   - Graph.cpp and Graph.h are used to contain three algorithms: BFS, Dijkstra, and PageRank, it also contains helper fnctions for three algorithms. You can visit it in [link]https://github.com/Alex5418/Final-project/blob/main/src/Graph.cpp
 ### /test
- -used to test all functions by using some smaller graphes. [link]https://github.com/Alex5418/Final-project/blob/main/tests/tests.cpp
+ -used to test all functions by using some smaller graphes. The tests contain test for read file from airports.txt, routes.txt. It also tests GetSubstrs and distance function in filereading.cpp. Besides, it contain three algorithms tests. [link]https://github.com/Alex5418/Final-project/blob/main/tests/tests.cpp
+
+## Running Instruction
+### Test case instruction
+First you need to create your own build file by typing " mkdir build "" cd build " in terminal, and "cmake..", then you need to compile by typing "make", after that, you can use "./test" to run the test. The test contains read file tests, distance and Getsubtrs tests, and also BFS, Dijkstra, and PageRank tests.
