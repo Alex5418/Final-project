@@ -199,6 +199,36 @@ void Graph::BFS(int source, int destination) {
     }
 }
 
+void Graph::SetBfsTestGraph(vector<vector<int> > test) {
+    g = test;
+}
+
+
+//same as the BFS except that BFS print paths TestBFS return paths
+vector<vector<int>> Graph::TestBFS(int source, int destination) {
+    queue<vector<int> > q;
+    vector<int> path;
+    vector<vector<int>> route;
+    path.push_back(source);
+    q.push(path);
+    while (!q.empty()) {
+        path = q.front();
+        q.pop();
+        int last = path[path.size() - 1];
+        
+        if (last == destination)
+            route.push_back(path);
+        
+        for (unsigned i = 0; i < g[last].size(); i++) {
+            if (isNotVisited(g[last][i], path)) {
+                vector<int> newpath(path);
+                newpath.push_back(g[last][i]);
+                q.push(newpath);
+            }
+        }
+    }
+    return route;
+}
 
 
 
@@ -277,21 +307,28 @@ void Graph::dijkstra(int source_id, int destination_id) {
     cout << "The shortest distance between " << airport_list[source].get_name() << " and " << airport_list[destination].get_name() << " is " << distance[destination] << " meters." << endl;
 
     //print out the route
-    cout << "The route is: " << endl;
+    //reverse the vector for correct order 
+    vector<int> path;
     int current = destination;
     while (current != -1) {
-        cout << airport_list[current].get_airport_id() << " ";
+        path.push_back(current);
         current = previous[current];
     }
-    cout << endl;
+    reverse(path.begin(), path.end());
+    cout << "The route is: " << endl;
+    for (unsigned i = 0; i < path.size(); i++) {
+        cout << airport_list[path[i]].get_name() << endl;
+    }
+
 
 }
 
 //same as previous dijkstra's algorithm, but no printing, instead returns the shortest distance in vector of path airport ids
-vector<int> Graph::dijkstraHelper (int source, int destination) {
+vector<int> Graph::dijkstraHelper (int source_id, int destination_id) {
+
     //first convert airport id to index in matrix
-    int source_index = airport_id_to_index[source];
-    int destination_index = airport_id_to_index[destination];
+    int source = airport_id_to_index[source_id];
+    int destination = airport_id_to_index[destination_id];
 
     //create a vector to store the shortest distance from source to each airport
     vector<double> distance;
@@ -300,10 +337,10 @@ vector<int> Graph::dijkstraHelper (int source, int destination) {
     for (int i = 0; i < num_vertices; i++) {
         distance[i] = INT_MAX;
     }
-    distance[source_index] = 0;
+    distance[source] = 0;
     vector<int> previous;
     previous.resize(num_vertices);
-    previous[source_index] = -1;
+    previous[source] = -1;
     vector<bool> visited;
     visited.resize(num_vertices);
     for (int i = 0; i < num_vertices; i++) {
@@ -311,7 +348,7 @@ vector<int> Graph::dijkstraHelper (int source, int destination) {
     }
 
     //while the destination has not been visited
-    while (!visited[destination_index]) {
+    while (!visited[destination]) {
         //find the vertex with the least distance from the source
         int least_distance = INT_MAX;
         int least_distance_index = -1;
@@ -334,15 +371,20 @@ vector<int> Graph::dijkstraHelper (int source, int destination) {
             }
         }
     }
-
-    //fill in the path vector
-    vector<int> paths;
-    int current = destination_index;
+    //return the route
+    //reverse the vector for correct order 
+    vector<int> path;
+    int current = destination;
     while (current != -1) {
-        paths.push_back(airport_list[current].get_airport_id());
+        path.push_back(current);
         current = previous[current];
     }
-    return paths;
+    reverse(path.begin(), path.end());
+    return path;
+
+
+
+
 }
 
 int Graph::findMinDistance(vector<int> distance, vector<int> visited) {
@@ -358,10 +400,10 @@ int Graph::findMinDistance(vector<int> distance, vector<int> visited) {
 }
 
 //same as previous dijkstra's algorithm, but no printing, instead returns the shortest distance between two airports
-double Graph::find_Shortest_Distance (int source, int destination) {
+double Graph::find_Shortest_Distance (int source_id, int destination_id) {
     //first convert airport id to index in matrix
-    int source_index = airport_id_to_index[source];
-    int destination_index = airport_id_to_index[destination];
+    int source = airport_id_to_index[source_id];
+    int destination = airport_id_to_index[destination_id];
 
     //create a vector to store the shortest distance from source to each airport
     vector<double> distance;
@@ -370,10 +412,10 @@ double Graph::find_Shortest_Distance (int source, int destination) {
     for (int i = 0; i < num_vertices; i++) {
         distance[i] = INT_MAX;
     }
-    distance[source_index] = 0;
+    distance[source] = 0;
     vector<int> previous;
     previous.resize(num_vertices);
-    previous[source_index] = -1;
+    previous[source] = -1;
     vector<bool> visited;
     visited.resize(num_vertices);
     for (int i = 0; i < num_vertices; i++) {
@@ -381,7 +423,7 @@ double Graph::find_Shortest_Distance (int source, int destination) {
     }
 
     //while the destination has not been visited
-    while (!visited[destination_index]) {
+    while (!visited[destination]) {
         //find the vertex with the least distance from the source
         int least_distance = INT_MAX;
         int least_distance_index = -1;
@@ -404,7 +446,13 @@ double Graph::find_Shortest_Distance (int source, int destination) {
             }
         }
     }
-    return distance[destination_index];
+
+    //return the shortest distance
+    return distance[destination];
+
+
+
+
 }
 
 //Betweenness Centrality

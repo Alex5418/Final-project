@@ -19,8 +19,8 @@ int main () {
     fr.readairport("/workspaces/CS225/Final-project/data/airports.txt");
     fr.readairroute("/workspaces/CS225/Final-project/data/Routes.txt");
     // fr.print_route();
-    vector<vector<int> > g;
-    //test distance calculation method
+    // vector<vector<int> > g;
+    // test distance calculation method
     
     // graph gra;
     // construct a graph
@@ -66,7 +66,7 @@ int main () {
     // for (auto i : tmp_vec) {
     //     std::cout << i << std::endl;
     // }
-    G.dijkstra(8560, 13144);
+    //G.dijkstra(8560, 13144);
 
     //test find shortest path
     //G.find_Shortest_Distance(8516, 8560);

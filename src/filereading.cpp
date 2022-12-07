@@ -48,8 +48,8 @@ void filereading::readairport(string file_airport) {
         tem_airport.set_IATA(temp[4]);
         tem_airport.set_ICAO(temp[5]);
         if (check_num(temp[6])) {
-            tem_airport.set_latitude(stold(temp[6]));
-        } 
+            tem_airport.set_latitude(stod(temp[6])); //
+        }
         if (check_num(temp[7])) {
             tem_airport.set_longtitude(stold(temp[7]));
         }

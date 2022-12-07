@@ -93,6 +93,9 @@ public:
 
     void BFS(int source, int destination); //traverse the graph, find all the airports that can be reached from the source airport and all possible routes
 
+    vector<vector<int>> TestBFS(int source, int destination);
+    void SetBfsTestGraph(vector<vector<int> > test);
+
     /*
     Create a recursive function that takes the index of a node of a graph and the destination index. Keep a global or a static variable count to store the count. 
     Keep a record of the nodes visited using a visited array and while returning mark the current node to be unvisited to discover other paths.
