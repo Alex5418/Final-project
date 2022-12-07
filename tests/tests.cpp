@@ -16,15 +16,12 @@
 
 
 // using namespace cs225;
+using namespace std;
 
 
 
 
-TEST_CASE("test for test case", "[weight=0][part=1]") {
 
-  REQUIRE( true == true );
-
-}
 
 TEST_CASE("test read data from file", "[weight=0][part=1]") {
 
@@ -36,6 +33,44 @@ TEST_CASE("test read data from file", "[weight=0][part=1]") {
   // }
   REQUIRE( test_airport_vec.size() == 27 );
 
+
+}
+
+TEST_CASE("BFS", "[weight=0][part=1]") {
+  vector<vector<int>> test1 = {
+    {1,2},
+    {2},
+    {3},
+    {},
+  };
+  Graph gra1(4);
+  gra1.SetBfsTestGraph(test1);
+  vector<vector<int>> output1 = gra1.TestBFS(0,3);
+  vector<vector<int>> result1 = {
+    {0,2,3},
+    {0,1,2,3},
+  };
+  REQUIRE(output1 == result1);
+
+  vector<vector<int>> test2 = {
+    {1,2},
+    {2,3,4},
+    {3,4},
+    {4},
+    {}
+  };
+  Graph gra2(4);
+  gra2.SetBfsTestGraph(test2);
+  vector<vector<int>> output2 = gra2.TestBFS(0,4);
+  vector<vector<int>> result2 = {
+    {0,1,4},
+    {0,2,4},
+    {0,1,2,4},
+    {0,1,3,4},
+    {0,2,3,4},
+    {0,1,2,3,4},
+  };
+  REQUIRE(output2 == result2);
 
 }
 
@@ -64,6 +99,8 @@ TEST_CASE("test dijkastra", "[weight=0][part=1]") {
   test_fr.readairroute("/workspaces/CS225/Final-project/data/Routes");
   Graph test_G(test_fr.getAirportVector(), test_fr.getRouteVector());
   std::vector<int> test_path = test_G.dijkstraHelper(2990, 4078);
+
+  REQUIRE(test_path.size() == 1);
 
 
 }
