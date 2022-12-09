@@ -18,71 +18,27 @@ int main () {
 
     fr.readairport("/workspaces/CS225/Final-project/data/airports.txt");
     fr.readairroute("/workspaces/CS225/Final-project/data/Routes.txt");
-    // fr.print_route();
-    // vector<vector<int> > g;
-    // test distance calculation method
+    filereading fr1;
+    fr1.readairroute("/workspaces/CS225/Final-project/data/tmp.txt");
     
-    // graph gra;
-    // construct a graph
-    // g = {
-    //     {3,1,2},
-    //     {3},
-    //     {1,0},
-    //     {}
-    // };
-    // gra.BFS(g, 5508, 5499);
-    
-    //BFS test end here
-
-    //get latitude and longtitude of two airports
-    // double lat1 = fr.getAirportVector()[0].get_latitude();
-    // double long1 = fr.getAirportVector()[0].get_longtitude();
-    // double lat2 = fr.getAirportVector()[1].get_latitude();
-    // double long2 = fr.getAirportVector()[1].get_longtitude();
-
-    // double tmp = fr.distance(lat1, long1, lat2, long2);
-
-    // fr.print_airport();
-
-    // std::cout << tmp << std::endl;
-
-
-
 
     Graph G(fr.getAirportVector(), fr.getRouteVector());
 
-
-    
-
-    //G.printGraph("full_test.txt");
-
-    //G.printConnectedAirports(2966);
-
     //test BFS to find route
-    //G.BFS(2990, 4078);
+    G.SetBfsGraph(fr.getAirportVector(), fr1.getRouteVector());
+    G.BFS(2990, 4078);
 
     //test dijkstra to find route
-    // vector<int> tmp_vec = G.dijkstraHelper(3406, 4078);
-    // for (auto i : tmp_vec) {
-    //     std::cout << i << std::endl;
-    // }
-    //G.dijkstra(8560, 13144);
 
-    //test find shortest path
-    //G.find_Shortest_Distance(8516, 8560);
-
-    //test betweenness centrality
-    //G.betweennessCentrality();
+    G.dijkstra(2990, 4078);
 
     //test pagerank
-    //vector<size_t> test_vec = G.SimplePageRank(10);
-    // for (auto i : test_vec) {
-    //     std::cout << i << std::endl;
-    // }
-    // for (auto i : test_vec) {
-    //     std::cout << i << " " << fr.getAirportVector()[i].get_name() << " " << fr.getAirportVector()[i].get_country()<< std::endl;
-    // }
+    vector<size_t> test_vec = G.SimplePageRank(10);
+  
+    for (auto i : test_vec) {
+        std::cout << i << " " << fr.getAirportVector()[i].get_name() << " " << fr.getAirportVector()[i].get_country()<< std::endl;
+    }
     
 
-    return 0;
+    // return 0;
 }
