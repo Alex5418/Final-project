@@ -317,7 +317,7 @@ void Graph::dijkstra(int source_id, int destination_id) {
     reverse(path.begin(), path.end());
     cout << "The route is: " << endl;
     for (unsigned i = 0; i < path.size(); i++) {
-        cout << airport_list[path[i]].get_name() << endl;
+        cout <<airport_list[path[i]].get_airport_id() << " "<< airport_list[path[i]].get_name() << endl;
     }
 
 
@@ -618,7 +618,11 @@ vector<size_t> Rank;
     
     int count = 0;
     for (auto i: sort_indices(PR)) {
+        if ( i == 0) {
+            continue;
+        }
         if (count==top) {
+            
             break;
         }
         Rank.push_back(i);
