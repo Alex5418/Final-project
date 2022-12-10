@@ -146,7 +146,8 @@ public:
     void set_airport_list(vector<airport> a);
 
     void set_route_list(vector<route> r);
-
+    
+    vector<size_t> TestSimplePageRank(int top);
 
     // ~Graph();
 };
