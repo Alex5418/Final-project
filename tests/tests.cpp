@@ -49,7 +49,7 @@ TEST_CASE("test for simpleRank", "[weight=0][part=1]") {
   test_fr.readairroute("/workspaces/cs225/Final-project/data/Routes.txt");
   Graph G_test(test_fr.getAirportVector(), test_fr.getRouteVector());
   vector<size_t> test_vec = G_test.TestSimplePageRank(5);
-  vector<size_t> result{3482, 3170, 3630, 1655, 1346};
+  vector<size_t> result{3482, 3170, 1346, 3630, 1655};
   REQUIRE(test_vec == result);
 }
 
