@@ -16,10 +16,10 @@ int main () {
 
     filereading fr;
 
-    fr.readairport("/workspaces/CS225/Final-project/data/airports.txt");
-    fr.readairroute("/workspaces/CS225/Final-project/data/Routes.txt");
+    fr.readairport("/workspaces/cs225/Final-project/data/airports.txt");
+    fr.readairroute("/workspaces/cs225/Final-project/data/Routes.txt");
     filereading fr1;
-    fr1.readairroute("/workspaces/CS225/Final-project/data/tmp.txt");
+    fr1.readairroute("/workspaces/cs225/Final-project/data/tmp.txt");
     
 
     Graph G(fr.getAirportVector(), fr.getRouteVector());
