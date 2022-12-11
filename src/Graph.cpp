@@ -680,7 +680,7 @@ bool Graph::isNotVisited(int x, vector<int>& path) {
 }
 
 // This for the testcase
-//Similar to SimplePageRank, but it only run 1 loop
+//Similar to SimplePageRank, but it only run 3 loop
 vector<size_t> Graph::TestSimplePageRank(int top) {
     vector<size_t> Rank;
 
@@ -692,6 +692,8 @@ vector<size_t> Graph::TestSimplePageRank(int top) {
         int num_zeros = count(adj_matrix[row].begin(), adj_matrix[row].end(), 0);
         Links[row] = airport_list.size()-num_zeros;
     }
+    int num = 0;
+    while (num <= 3) {
 
     for (size_t i = 0; i < PR.size(); i++) {
         double income = 0;
@@ -702,13 +704,18 @@ vector<size_t> Graph::TestSimplePageRank(int top) {
         }
         PR[i] = income;
     }
+    num++;
+    }
 
+
+    
     int count = 0;
     for (auto i: sort_indices(PR)) {
-        if (i == 0) {
+        if ( i == 0) {
             continue;
         }
         if (count==top) {
+            
             break;
         }
         Rank.push_back(i);
@@ -716,5 +723,3 @@ vector<size_t> Graph::TestSimplePageRank(int top) {
     }
     return Rank;
 }
-
-
